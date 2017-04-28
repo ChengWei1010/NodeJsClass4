@@ -11,7 +11,7 @@ route = (ws, msg) => {
         case "CREATE":
             if (ws.session.name)                
                 {
-                    //################# 4. 使用createNreGame( )function，來開一個新遊戲 #################
+                    //################# 4. 使用createNewGame( )function，來開一個新遊戲 #################
                 }
             else
                 sendJson(ws, { type: msg.type, status: "not login" });
