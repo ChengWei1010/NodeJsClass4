@@ -38,26 +38,18 @@ function getUser(key) {
 }
 app.use('/', express.static('static'));
 
+//創一個Server
 const server = http.createServer(app);
+
 const wss = new WebSocket.Server({ server, path: "/ws" });
 wss.on('connection', function connection(ws) {
     sessionParser(ws.upgradeReq, {}, function () {
         var session = ws.upgradeReq.session;
         ws.session = session;
     });
-    ws.on('message', function incoming(data) {
-        var msg = { type: null };
-        try {
-            msg = JSON.parse(data);
-        } catch (e) { }
-        if (msg.type == null) {
-            ws.close();
-        }
-        else {
-            wsc.route(ws, msg);
-        }
-
-    });
+    
+    //## 伺服器接收到訊息'message'之後要做的事
+    
 });
 
 server.listen(port, function listening() {

@@ -24,7 +24,7 @@ function WsManager() {
             case "COMPUTING":
 
                 if (msg.finish) {
-                    //// 請兩個人案準備
+                    //// 請兩個人按準備
                     $("#detail").addClass('remove');
                     $("#ready").removeClass('remove');
                     $("#pre_status").html("準備開始");
