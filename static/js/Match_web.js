@@ -4,7 +4,8 @@ function WsManager() {
     var self = this;
     var protocol = (window.location.protocol == "https:") ? "wss://" : "ws://";
     self.ws = new WebSocket(protocol + window.location.host + "/ws");
-
+    
+    //.onopen 是連線之後要做的事
     self.ws.onopen = function () {
         // Web Socket is connected, send data using send()
         console.log("[ws] connected.");
@@ -12,6 +13,7 @@ function WsManager() {
         //################# 2. 連上websocket之後，去做檢查的動作 #################
 
     };
+    //.onmessage 接收登入狀態的訊息
     self.ws.onmessage = function (evt) {
         var msg = JSON.parse(evt.data);
         console.log(msg);
@@ -55,7 +57,7 @@ function WsManager() {
 
         if (msg.status == "ok") {
         
-            //################# 6. 這裡是把自己加入遊戲 #################
+            //################# 7. 這裡是把自己加入遊戲 #################
         
             var gameurl = window.location.origin + "/?id=" + msg.id;
             setAlert(msg.name + "玩家，你好", "比賽連結", "<div class=\"container col-md-8 col-md-offset-2\" id=\"url\"><div class=\"input-group\"><input type=\"text\" class=\"form-control\" placeholder=\"Url\" value=\"" + gameurl + "\"><span class=\"input-group-btn\"><button class=\"btn btn-secondary\" type=\"button\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"複製\" data-delay=\"0\" onclick=\"copyURL()\"><img src=\"\.\/pic\/CopyFilled.png\"></button></span></div></div>");
@@ -66,7 +68,7 @@ function WsManager() {
             setAlert("無法加入", "ID 無效，產生新的房間...", "");
             setTimeout(
             
-            //################# 7. 如果加入失敗的話，自己創一個房間 #################
+            //################# 8. 如果加入失敗的話，自己創一個房間 #################
             
             , 1000);
         } else

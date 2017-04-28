@@ -38,18 +38,19 @@ function getUser(key) {
 }
 app.use('/', express.static('static'));
 
-//創一個Server
+//創一個web socket的Server
 const server = http.createServer(app);
-
 const wss = new WebSocket.Server({ server, path: "/ws" });
 wss.on('connection', function connection(ws) {
+// 使用sessionParser來把express的session中的資料讀出來
     sessionParser(ws.upgradeReq, {}, function () {
         var session = ws.upgradeReq.session;
         ws.session = session;
     });
     
     //################# 1. 伺服器接收到'message'指令之後要做的事 #################
-    
+    //首先說明message的屬性，在做連線
+
 });
 
 server.listen(port, function listening() {
