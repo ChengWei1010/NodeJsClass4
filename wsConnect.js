@@ -11,7 +11,7 @@ route = (ws, msg) => {
         case "CREATE":
             if (ws.session.name)                
                 {
-                    //## 使用createNreGame( )function，來開一個新遊戲
+                    //################# 3. 使用createNreGame( )function，來開一個新遊戲 #################
                 }
             else
                 sendJson(ws, { type: msg.type, status: "not login" });
@@ -19,8 +19,8 @@ route = (ws, msg) => {
         case "JOIN":
             if (msg.game && ws.session.name) {
                 
-                //## 利用joinGame()function來加入遊戲
-                //## 檢查todo變數
+                //################# 4. 利用joinGame()function來加入遊戲 #################
+                //################# 5. 檢查todo變數 #################
 
             } else {
                 sendJson(ws, { type: msg.type, status: "not login or no game id" });
@@ -30,7 +30,7 @@ route = (ws, msg) => {
         case "INFO":
             if (ws.session.name && msg.game) {
                 
-                //## 登入配對完成之後，前端會傳INFO的訊息給伺服器，當兩個玩家都登入後，伺服器開始出題目createQuestion()
+                //################# 8. 登入配對完成之後，前端會傳INFO的訊息給伺服器，當兩個玩家都登入後，伺服器開始出題目createQuestion() #################
             
             }
             break;
@@ -45,7 +45,7 @@ route = (ws, msg) => {
             break;
         case "ANSWER":
            
-            //## 玩家回答完問題之後要做的事情
+            //################# 9. 玩家回答完問題之後要做的事情 #################
            
             break;
     }
@@ -53,8 +53,8 @@ route = (ws, msg) => {
 sendResult = (game, nq) => {
     if (game.nowquestion == nq) {
         
-        //## 先拿到所有答題的結果，再傳給兩個玩家
-        //## 兩秒之後出下一題
+        //################# 10. 先拿到所有答題的結果，再傳給兩個玩家 #################
+        //################# 11. 兩秒之後出下一題 #################
 
     }
 }
@@ -63,12 +63,12 @@ sendQuestion = (gameid) => {
     gm.getQuestion(gameid).then((data) => {
         if (data != null) {
         
-        //## 拿一個新的題目之後傳給玩家
+        //################# 12. 拿一個新的題目之後傳給玩家 #################
         
         }
         else {
             
-            //## 題目都拿完時，用getEndResul() 回傳總分
+            //################# 13. 題目都拿完時，用getEndResul() 回傳總分 #################
 
         }
 
